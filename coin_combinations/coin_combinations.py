@@ -1,7 +1,9 @@
-# Given a value N and a list of coin types C, find the number of coin combinations 
-# that sum up to N.
-# For example, for N=4 and C=[1,2,3], there are four combinations:
-# [1,1,1,1], [1,1,2], [1,3], [2,2]
+"""
+Given a value N and a list of coin types C, find the number of coin combinations 
+that sum up to N.
+For example, for N=4 and C=[1,2,3], there are four combinations:
+[1,1,1,1], [1,1,2], [1,3], [2,2]
+"""
 
 # ----------------------------------------
 def coin_combinations(N, C):
