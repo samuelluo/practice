@@ -1,3 +1,7 @@
+"""
+Given an array of integers, find the continuous subarray that has the largest sum.
+"""
+
 def largest_subarray_sum(nums):
     curr_max = total_max = nums[0]
     for i in nums:

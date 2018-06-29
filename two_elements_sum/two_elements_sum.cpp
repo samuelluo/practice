@@ -1,4 +1,6 @@
 // g++ -std=c++14 find_two_elements_sum.cpp
+// Given a list of numbers and a number k, return whether any two numbers from
+// the list add up to k.
 #include <iostream>
 #include <map>
 #include <set>

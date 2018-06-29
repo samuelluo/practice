@@ -1,3 +1,10 @@
+"""
+Given a binary tree and two values, find the least common ancestor.
+Let T be the root of a tree. The lowest common ancestor between two nodes n1 
+and n2 is defined as the lowest node in T that has both n1 and n2 as 
+descendants. A node can be a descendant of itself.
+"""
+
 # -----------------------------------
 class Node:
     def __init__(self, val, left=None, right=None):

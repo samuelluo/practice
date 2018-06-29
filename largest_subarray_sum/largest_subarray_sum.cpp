@@ -1,8 +1,8 @@
 // g++ -std=c++17 find_largest_subarray_sum.cpp
+// Given an array of integers, find the continuous subarray that has the largest sum.
 #include <vector>
 #include <iostream>
 #include <algorithm>
-
 
 int largest_subarray_sum_1(std::vector<int> nums) {
     int curr_max = 0; int total_max = 0;
