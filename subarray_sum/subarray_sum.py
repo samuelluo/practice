@@ -1,3 +1,8 @@
+"""
+Given an integer array, find if there is a continuous subarray that sums up to
+a target value k.
+"""
+
 # --------------------------------------------------
 def subarray_sum(nums, k):
     # start_index inclusive, end_index not inclusive

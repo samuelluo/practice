@@ -1,4 +1,7 @@
 // g++ -std=c++14 find_second_smallest.cpp
+/*
+Given an integer array, find the second smallest value.
+*/
 #include <iostream>
 #include <limits>
 #include <vector>
