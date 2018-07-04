@@ -5,6 +5,7 @@ For example, given s = "abcbabc" and k = 2, the longest substring with k distinc
 characters is "bcb".
 """
 
+# ---------------------------------------------------------
 def longest_substring_k_occurrences(s, k):
     curr_left = curr_right = 0
     max_left = max_right = 0
@@ -18,14 +19,12 @@ def longest_substring_k_occurrences(s, k):
         else:
             char_counts[char] += 1
             if char_counts[char] > k:
-                curr_substr = s[curr_left:curr_right]
                 processed = False
                 while not processed:
-                    if curr_substr[0] == char:
+                    if s[curr_left] == char:
                         processed = True
+                    char_counts[s[curr_left]] = max(0, char_counts[s[curr_left]]-1)
                     curr_left += 1
-                    char_counts[curr_substr[0]] = max(0, char_counts[curr_substr[0]]-1)
-                    curr_substr = curr_substr[1:]
         # print([curr_left, curr_right])
         # print(char_counts)
 
