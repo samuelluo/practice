@@ -1,4 +1,4 @@
-// g++ -std=c++14 find_two_elements_sum.cpp
+// g++ -std=c++17 two_elements_sum.cpp
 // Given a list of numbers and a number k, return whether any two numbers from
 // the list add up to k.
 #include <iostream>
@@ -57,6 +57,7 @@ int main() {
         for (auto i : result_2) {
             std::cout << nums[i] << ' ';
         }
+        std::cout << std::endl;
     } else {
         std::cout << k << " not in nums" << std::endl;
     }
