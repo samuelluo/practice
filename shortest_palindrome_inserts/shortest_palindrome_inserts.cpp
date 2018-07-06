@@ -7,7 +7,8 @@ inserted to form a palindrome.
 #include <iostream>
 #include <algorithm>
 
-int shortest_palindrome_inserts(std::string s) {
+// ----------------------------------------------------------------------------
+int shortest_palindrome_inserts_1(std::string s) {
     if (s.length() <= 1) {
         return 0;
     }
@@ -20,12 +21,12 @@ int shortest_palindrome_inserts(std::string s) {
     }
     if (s[0] == s[s.length()-1]) {
         std::string s1 = s.substr(1, (s.length()-1) - 1);
-        return shortest_palindrome_inserts(s1);
+        return shortest_palindrome_inserts_1(s1);
     } else {
         std::string s1 = s.substr(0, (s.length()-1) - 0);
         std::string s2 = s.substr(1, (s.length()-0) - 1);
-        return std::min(shortest_palindrome_inserts(s1),
-                        shortest_palindrome_inserts(s2)) + 1;
+        return std::min(shortest_palindrome_inserts_1(s1),
+                        shortest_palindrome_inserts_1(s2)) + 1;
     }
 }
 
@@ -62,71 +63,48 @@ int shortest_palindrome_inserts_2(std::string s) {
     return inserts[0][s.length()];
 }
 
+void shortest_palindrome_inserts(std::string s) {
+    int result;
+    std::cout << "string: " << s << std::endl;
+    result = shortest_palindrome_inserts_1(s);
+    std::cout << "minimum inserts method 1: " << result << std::endl;
+    result = shortest_palindrome_inserts_2(s);
+    std::cout << "minimum inserts method 2: " << result << std::endl;
+}
+
+// ----------------------------------------------------------------------------
 int main() {
     std::string s;
-    int result;
 
     // 0 inserts
     s = "aba";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
-    
+    shortest_palindrome_inserts(s);
+
     // 0 inserts
     s = "abba";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 1 insert; 'abb' -> 'abba'
     s = "abb";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 1 inserts; 'abab' -> 'ababa'
     s = "abab";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 1 inserts; 'abca' -> 'acbca'
     s = "abca";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 2 inserts; 'abcda' -> 'abdcda' -> 'abdcdba'
     s = "abbc";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 2 inserts; 'abcda' -> 'abdcda' -> 'abdcdba'
     s = "abcda";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 
     // 3 inserts; 'abcd' -> 'abcdc' -> 'abcdcb' -> 'abcdcba'
     s = "abcd";
-    std::cout << "string: " << s << std::endl;
-    result = shortest_palindrome_inserts(s);
-    std::cout << "minimum inserts method 1: " << result << std::endl;
-    result = shortest_palindrome_inserts_2(s);
-    std::cout << "minimum inserts method 2: " << result << std::endl;
+    shortest_palindrome_inserts(s);
 }
