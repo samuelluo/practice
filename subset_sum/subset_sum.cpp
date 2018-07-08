@@ -3,6 +3,7 @@
 Given a list of numbers and a number k, return whether a subset of the
 numbers from the list add up to k.
 */
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <set>
@@ -63,7 +64,7 @@ std::vector<int> subset_sum_2(std::vector<int> nums, int k) {
     }
     */
 
-    // Return
+    // Build a list of indexes for the numbers that sum up to the target
     std::vector<int> indexes;
     if (table[nums.size()][k] == true) {
         int i = nums.size(); int j = k;
@@ -78,6 +79,11 @@ std::vector<int> subset_sum_2(std::vector<int> nums, int k) {
             i = i-1;
         }
     }
+    
+    // Indexes are in reverse order, so reverse the list
+    std::reverse(indexes.begin(), indexes.end());
+
+    // Return
     return indexes;
 }
 
