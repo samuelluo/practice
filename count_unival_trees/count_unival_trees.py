@@ -1,3 +1,10 @@
+"""
+A unival tree (which stands for "universal value") is a tree where all nodes
+under it have the same value.
+Given the root to a binary tree, count the number of unival subtrees.
+"""
+
+# ----------------------------------------
 class Node:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -42,6 +49,7 @@ def count_unival_trees_2_helper(root):
         return [num_unival, False]
 
 # ----------------------------------------
+# Answer: 3
 root = Node('a',
             Node('a'),
             Node('a',
@@ -52,6 +60,7 @@ print(result)
 result = count_unival_trees_2(root)
 print(result)
 
+# Answer: 5
 root = Node('a',
             Node('c'),
             Node('b',
