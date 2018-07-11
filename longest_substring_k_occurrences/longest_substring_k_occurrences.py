@@ -2,7 +2,7 @@
 Given an integer k and a string s, find the length of the longest substring
 that contains at most k occurrences of any given character.
 For example, given s = "abcbabc" and k = 2, the longest substring with k distinct
-characters is "bcb".
+characters is "abcba".
 """
 
 # ---------------------------------------------------------
