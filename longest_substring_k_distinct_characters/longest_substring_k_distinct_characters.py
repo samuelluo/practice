@@ -38,11 +38,13 @@ def longest_substring_k_distinct_characters(s, k):
 
 
 # ---------------------------------------------------------
+# Answer: bcb
 s = 'abcba'
 k = 2
 max_left, max_right = longest_substring_k_distinct_characters(s, k)
 print([max_left, max_right, s[max_left:max_right]])
 
+# Answer: bcbb
 s = 'abcbbaacba'
 k = 2
 max_left, max_right = longest_substring_k_distinct_characters(s, k)

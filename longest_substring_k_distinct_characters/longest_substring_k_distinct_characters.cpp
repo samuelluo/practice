@@ -5,22 +5,24 @@ that contains at most k distinct characters.
 For example, given s = "abcba" and k = 2, the longest substring with k distinct
 characters is "bcb".
 */
-#include <string>
-#include <map>
-#include <iostream>
-#include <vector>
+#include <iostream>    // std::cout
+#include <map>         // std::map
+#include <string>      // std::string
+#include <utility>     // std::pair
+#include <vector>      // std::vector
 
-int main() {
-    std::string s = "abcba";
-    int k = 2;
-
-    int curr_left = 0; int curr_right = 0;
-    int max_left = 0; int max_right = 0;
+std::pair<int, int> longest_substring_k_distinct_characters(std::string s, int k) {
+    // Initialize
+    int curr_left = 0;
+    int curr_right = 0;
+    int max_left = 0;
+    int max_right = 0;
     std::map<char, int> char_counts;
+
+    // Iterate
     for (int i = 0; i < s.length(); i++) {
         // Update current count of characters
         char char_i = s[i];
-        std::cout << "curr char: " << char_i << std::endl;
         curr_right += 1;
         if (char_counts.find(char_i) == char_counts.end()) {
             char_counts[char_i] = 1;
@@ -30,15 +32,12 @@ int main() {
 
         // Reduce current count of character if it has exceeded the limit k
         std::vector<char> keys;
-        std::cout << "substring unique chars: ";
         for (std::map<char, int>::iterator iter = char_counts.begin();
              iter != char_counts.end(); iter++) {
             if (iter->second != 0) {
-                std::cout << iter->first << " ";
                 keys.push_back(iter->first);
             }
         }
-        std::cout << std::endl;
         if (keys.size() > k) {
             char_counts[s[curr_left]] -= 1;
             curr_left += 1;
@@ -52,6 +51,29 @@ int main() {
     }
 
     // Return
-    std::cout << max_left << ", " << max_right << std::endl;
-    std::cout << s.substr(max_left, max_right-max_left) << std::endl;
+    return std::pair<int, int>(max_left, max_right);
+}
+
+int main() {
+    std::string s = "abcba";
+    int k = 2;
+    std::pair<int, int> result;
+    int max_left;
+    int max_right;
+
+    s = "abcba";
+    k = 2;
+    result = longest_substring_k_distinct_characters(s, k);
+    max_left = result.first;
+    max_right = result.second;
+    std::cout << "[" << max_left << ", " << max_right << ", ";
+    std::cout << s.substr(max_left, max_right-max_left) << "]" << std::endl;
+
+    s = "abcbbaacba";
+    k = 2;
+    result = longest_substring_k_distinct_characters(s, k);
+    max_left = result.first;
+    max_right = result.second;
+    std::cout << "[" << max_left << ", " << max_right << ", ";
+    std::cout << s.substr(max_left, max_right-max_left) << "]" << std::endl;
 }
