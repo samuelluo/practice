@@ -1,4 +1,7 @@
 // g++ -std=c++17 k_sorted_lists.cpp
+/*
+Return a new sorted merged list from K sorted lists, each with size N.
+*/
 #include <vector>
 #include <queue>
 #include <iostream>

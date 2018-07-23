@@ -1,3 +1,7 @@
+"""
+Return a new sorted merged list from K sorted lists, each with size N.
+"""
+
 import heapq
 
 def sort_lists(lists):
