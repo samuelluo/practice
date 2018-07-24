@@ -11,13 +11,14 @@ cost.
 def balance_travel(costs):
     # Set up
     swap_costs = [(i[0]-i[1],) + i for i in costs]
-    swap_costs = sorted(swap_costs, key=lambda x: x[0], reverse=True)
+    swap_costs = sorted(swap_costs, key=lambda x: abs(x[0]), reverse=True)
     ny = []
     sf = []
     i = 0
 
     # Assign the largest cost differences (opportunity cost) first
-    while len(ny) < len(costs)//2 and len(sf) < len(costs)//2:
+    threshold = len(costs)//2 + (len(costs) % 2 != 0)
+    while len(ny) < threshold and len(sf) < threshold:
         cost = swap_costs[i]
         if cost[0] > 0:    # If NY > SF, send to SF
             sf.append(cost[1:])
@@ -42,8 +43,14 @@ def balance_travel(costs):
     print()
 
 # ---------------------------------------------------------
+# Answer: 650
 costs = [(400, 200), (200, 100), (300, 150), (100, 50)]
 balance_travel(costs)
 
+# Answer: 1002
 costs = [(1000, 1001), (1, 11)]
+balance_travel(costs)
+
+# Answer: 1100
+costs = [(1000, 1001), (100, 99), (1, 11)]
 balance_travel(costs)

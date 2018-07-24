@@ -30,20 +30,26 @@ void balance_travel(std::vector<std::tuple<int, int>> costs) {
     }
     std::sort(swap_costs.begin(), swap_costs.end(),
               [](std::tuple<int, int, int> a, std::tuple<int, int, int> b) {
-        return std::get<0>(a) > std::get<0>(b);    // Sort swap costs descending
+        return std::abs(std::get<0>(a)) > std::abs(std::get<0>(b));
     });
+    // for (auto i : swap_costs) {
+    //     std::cout << std::get<0>(i) << " ";
+    //     std::cout << std::get<1>(i) << " ";
+    //     std::cout << std::get<2>(i) << std::endl;
+    // }
     std::vector<std::tuple<int, int>> ny;
     std::vector<std::tuple<int, int>> sf;
     int i = 0;
 
     // Assign the largest cost differences (opportunity cost) first
-    while (ny.size() < costs.size()/2 && sf.size() < costs.size()/2) {
+    int threshold = costs.size()/2 + (costs.size() % 2 != 0);
+    while (ny.size() < threshold && sf.size() < threshold) {
         std::tuple<int, int, int> swap_cost = swap_costs[i];
         std::tuple<int, int> cost = std::make_tuple(std::get<1>(swap_cost),
                                                     std::get<2>(swap_cost));
-        if (std::get<0>(cost) > 0) {    // If NY > SF, send to SF
+        if (std::get<0>(swap_cost) > 0) {    // If NY > SF, send to SF
             sf.push_back(cost);
-        } else {                        // If NY < SF, send to NY
+        } else {                             // If NY < SF, send to NY
             ny.push_back(cost);
         }
         i += 1;
@@ -91,6 +97,8 @@ void balance_travel(std::vector<std::tuple<int, int>> costs) {
 
 int main() {
     std::vector<std::tuple<int, int>> costs;
+
+    // Answer: 650
     costs = {
         std::make_tuple(400, 200),
         std::make_tuple(200, 100),
@@ -99,12 +107,14 @@ int main() {
     };
     balance_travel(costs);
 
+    // Answer: 1002
     costs = {
         std::make_tuple(1000, 1001),
         std::make_tuple(1, 11)
     };
     balance_travel(costs);
 
+    // Answer: 1100
     costs = {
         std::make_tuple(1000, 1001),
         std::make_tuple(100, 99),
