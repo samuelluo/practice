@@ -1,6 +1,9 @@
 // g++ -std=c++17 count_nodes.cpp
-#include <iostream>
-#include <queue>
+/*
+Given a binary tree, count the number of nodes.
+*/
+#include <iostream>    // std::cout, std::endl
+#include <queue>       // std::queue
 
 struct Node {
     int val = 0;
