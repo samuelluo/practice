@@ -1,4 +1,5 @@
 import numpy
+import functools
 import timeit
 
 # -------------------------------------------------------------------
@@ -22,8 +23,16 @@ def present_value_2(cf_list, discount_rate):
     pv = sum(cf_list)
     return pv
 
+def present_value_3(cf_list, discount_rate):
+    if discount_rate <= -1:
+        return None
+    cf_list = map(lambda x, y: x / ((1+discount_rate)**y),
+                  cf_list, range(1, len(cf_list)+1))
+    pv = functools.reduce(lambda x, y: x+y, cf_list)
+    return pv
+
 # -------------------------------------------------------------------
-cf_list = numpy.random.choice(10, 100)
+cf_list = numpy.random.randint(low=1, high=11, size=500)
 discount_rate = 0.05
 
 result = present_value_1(cf_list, discount_rate)
@@ -32,10 +41,11 @@ result = present_value_2(cf_list, discount_rate)
 print(result)
 print()
 
-# Performance between for-loop and numpy.vectorize is roughly the same...
-# TODO: test reduce(map())
+# As size of cf_list increases, vectorize() seems fastest
 t = timeit.Timer(lambda: present_value_1(cf_list, discount_rate))
 print(t.timeit(number=1000))
 t = timeit.Timer(lambda: present_value_2(cf_list, discount_rate))
+print(t.timeit(number=1000))
+t = timeit.Timer(lambda: present_value_3(cf_list, discount_rate))
 print(t.timeit(number=1000))
 print()
