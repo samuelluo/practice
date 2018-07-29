@@ -4,14 +4,16 @@ Suppose integers are read from a data stream. For each additional element read
 in, find the median so far.
 */
 
-#include <functional>    // std::greater, std::less
-#include <iostream>      // std::cout, std::endl
-#include <queue>         // std::priority_queue
-#include <vector>        // std::vector
-#include <typeinfo>      // typeid
+#include <functional>     // std::greater, std::less
+#include <iostream>       // std::cout, std::endl
+#include <queue>          // std::priority_queue
+#include <vector>         // std::vector
+#include <typeinfo>       // typeid
+#include <type_traits>    // std::is_same
 
 // ----------------------------------------------------------------------------
-template <typename T> void print_vector(T& v) {
+template<typename T>
+void print_vector(T& v) {
     std::cout << "[";
     for (int i = 0; i < v.size(); i++) {
         if (i == v.size() - 1) {
@@ -23,7 +25,8 @@ template <typename T> void print_vector(T& v) {
     std::cout << "]" << std::endl;
 }
 
-template <typename T> void print_queue(T q) {
+template<typename T>
+void print_queue(T q) {
     std::cout << "[";
     while (!q.empty()) {
         std::cout << q.top();
@@ -35,11 +38,18 @@ template <typename T> void print_queue(T q) {
     std::cout << "]" << std::endl;
 }
 
-// template <typename T> void print(T var) {
-//     if (typeid(var) == typeid(std::vector<T>)) {
+// template<typename Test, template<typename...> class Ref>
+// struct is_spec : std::false_type {};
+
+// template<template<typename...> class Ref, typename... Args>
+// struct is_spec<Ref<Args...>, Ref> : std::true_type {};
+
+// template<typename T>
+// void print(T var) {
+//     if (std::is_same<var, std::vector>::value) {
 //         print_vector(var);
 //     }
-//     if (typeid(var) == typeid(std::priority_queue<T>)) {
+//     if (std::is_same<var, std::priority_queue>::value) {
 //         print_queue(var);
 //     }
 // }
