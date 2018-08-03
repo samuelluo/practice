@@ -8,6 +8,7 @@ For example:
 
 # --------------------------------------------------
 def largest_non_adjacent_sum(nums):
+    """ Returns list of lists, of form [[largest_sum, [indices]]. """
     largest = [[nums[0], [0]]]
     if nums[1] > nums[0]: largest.append([nums[1], [1]])
     else:                 largest.append([nums[0], [0]])
