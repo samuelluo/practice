@@ -10,7 +10,6 @@ Find a way to calculate the median across the different machines.
 #include <vector>      // std::vector
 
 std::random_device rd;
-std::mt19937 prg(rd());
 
 // ------------------------------------------------------------------
 template<typename T>
@@ -48,8 +47,8 @@ double find_element_k(std::vector<std::vector<int>> nums, int k) {
         }
 
         // Randomly select a pivot element
-        int machine_i = std::uniform_int_distribution<int>(0, nums.size()-1)(prg);
-        int element_i = std::uniform_int_distribution<int>(0, nums[machine_i].size()-1)(prg);
+        int machine_i = std::uniform_int_distribution<int>(0, nums.size()-1)(rd);
+        int element_i = std::uniform_int_distribution<int>(0, nums[machine_i].size()-1)(rd);
         double element = nums[machine_i][element_i];
 
         // Find number of element less than a random pivot element
