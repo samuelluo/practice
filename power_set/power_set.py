@@ -7,19 +7,25 @@ For example, given the set {1, 2, 3}, it should return
 """
 
 # ---------------------------------------------------------
-def power_set(nums):
-nums = list(nums)
-power_set = []
-for i in range(2**len(nums)):
-    binary = bin(i)[2:]
-    binary = '0'*(len(nums)-len(binary)) + binary
-    power_set_i = []
-    power_set_i = [nums[i] for i in range(len(binary)) if binary[i] == '1']
-    print([binary, power_set_i])
-    power_set.append(power_set_i)
-return power_set
+def power_set(elements):
+    elements = list(elements)
+    power_set = []
+    for i in range(2**len(elements)):
+        binary = bin(i)[2:]
+        binary = '0'*(len(elements)-len(binary)) + binary
+        power_set_i = []
+        power_set_i = [elements[i] for i in range(len(binary)) if binary[i] == '1']
+        # print([binary, power_set_i])
+        power_set.append(power_set_i)
+    return power_set
 
 # ---------------------------------------------------------
-nums = set([1,2,3])
-result = power_set(nums)
+elements = set([1,2,3])
+result = power_set(elements)
 print(result)
+print()
+
+elements = set(['A', 'A', 'B', 'C', 'D'])
+result = power_set(elements)
+print(result)
+print()
