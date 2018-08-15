@@ -19,11 +19,27 @@ def bst_insert(root, val):
     return root
 
 def bst_second_largest_1(root):
+    largest = second_largest = None
+    queue = [root]
+    while len(queue) != 0:
+        node = queue.pop(0)
+        if largest is None or node.val > largest:
+            second_largest = largest
+            largest = node.val
+        elif second_largest is None or node.val > second_largest:
+            second_largest = node.val
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+    return [largest, second_largest]
+
+def bst_second_largest_2(root):
     if root is None:
         return
     print(root.val, end=", ")
-    bst_second_largest_1(root.left)
-    bst_second_largest_1(root.right)
+    bst_second_largest_2(root.left)
+    bst_second_largest_2(root.right)
 
 # ----------------------------------------
 root = Node(5)
@@ -33,5 +49,5 @@ root = bst_insert(root, 4)
 root = bst_insert(root, 7)
 root = bst_insert(root, 6)
 root = bst_insert(root, 8)
-
-bst_second_largest_1(root)
+result = bst_second_largest_1(root)
+print(result)
