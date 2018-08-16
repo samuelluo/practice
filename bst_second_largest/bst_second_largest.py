@@ -35,11 +35,19 @@ def bst_second_largest_1(root):
     return [largest, second_largest]
 
 def bst_second_largest_2(root):
-    if root is None:
+    """ For a BST, in-order traversal will pass through the nodes in
+        increasing order. """
+    bst_second_largest_2_helper(root, 0)
+
+def bst_second_largest_2_helper(root, count):
+    if root is None: return
+    bst_second_largest_2_helper(root.right, count)
+    count += 1
+    print([root.val, count])
+    if count == 2:
+        print("Second largest: {}".format(root.val))
         return
-    print(root.val, end=", ")
-    bst_second_largest_2(root.left)
-    bst_second_largest_2(root.right)
+    bst_second_largest_2_helper(root.left, count+1)
 
 # ----------------------------------------
 root = Node(5)
@@ -51,3 +59,15 @@ root = bst_insert(root, 6)
 root = bst_insert(root, 8)
 result = bst_second_largest_1(root)
 print(result)
+bst_second_largest_2(root)
+print()
+
+root = Node(1)
+root = bst_insert(root, 2)
+root = bst_insert(root, 3)
+root = bst_insert(root, 4)
+root = bst_insert(root, 5)
+result = bst_second_largest_1(root)
+print(result)
+bst_second_largest_2(root)
+print()
