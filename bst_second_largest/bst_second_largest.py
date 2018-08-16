@@ -40,14 +40,13 @@ def bst_second_largest_2(root):
     bst_second_largest_2_helper(root, 0)
 
 def bst_second_largest_2_helper(root, count):
-    if root is None: return
-    bst_second_largest_2_helper(root.right, count)
+    if root is None: return count
+    count = bst_second_largest_2_helper(root.right, count)
     count += 1
-    print([root.val, count])
     if count == 2:
         print("Second largest: {}".format(root.val))
-        return
-    bst_second_largest_2_helper(root.left, count+1)
+    count = bst_second_largest_2_helper(root.left, count)
+    return count
 
 # ----------------------------------------
 root = Node(5)
